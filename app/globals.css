@@ -22,5 +22,63 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+@keyframes slide {
+  from {
+    translate: var(--slide-distance);
+  }
+  to {
+    translate: 0;
+  }
+}
+
+/* Enter from right - element slides in from right */
+::view-transition-new(.enter-right) {
+  --slide-distance: 60px;
+  animation:
+    fade 210ms ease-out 150ms,
+    slide 400ms ease-out;
+}
+
+/* Enter from left - element slides in from left */
+::view-transition-new(.enter-left) {
+  --slide-distance: -60px;
+  animation:
+    fade 210ms ease-out 150ms,
+    slide 400ms ease-out;
+}
+
+/* Exit to left - element slides out to left */
+::view-transition-old(.exit-left) {
+  --slide-distance: -60px;
+  animation:
+    fade 150ms ease-out reverse,
+    slide 400ms ease-out reverse;
+}
+
+/* Exit to right - element slides out to right */
+::view-transition-old(.exit-right) {
+  --slide-distance: 60px;
+  animation:
+    fade 150ms ease-out reverse,
+    slide 400ms ease-out reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-new(*),
+  ::view-transition-old(*) {
+    --slide-distance: 0;
+  }
 }

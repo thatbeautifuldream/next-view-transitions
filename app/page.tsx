@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ViewTransition } from "react";
-import { galleryImages } from "./data";
+import { galleryImages } from "@/lib/data";
 
 export default function Home() {
   return (
