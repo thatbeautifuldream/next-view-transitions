@@ -51,7 +51,6 @@ export default function ImageDetail({
           Back to Gallery
         </Link>
         <ViewTransition
-          name={`container-${image.id}`}
           enter={{
             backwards: "enter-right",
             forwards: "enter-left",
